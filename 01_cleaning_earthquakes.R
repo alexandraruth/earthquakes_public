@@ -2,7 +2,7 @@
 
 
 # Input:  earthquakes_raw.csv
-# Output: earthquakes_clean.Rda
+# Output: earthquakes.Rda
 
 
 # Prepare working environment ----
@@ -65,6 +65,8 @@ country_na <- country_na %>%
 
 
 countrylist <- countrycode::codelist$country.name.en
+
+save(earthquakes, file = "earthquakes.Rda")
 
 
 # make quick map of earthquake events in leaflet to visually inspect locations
