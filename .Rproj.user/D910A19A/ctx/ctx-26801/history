@@ -1,0 +1,76 @@
+library(tidyverse)
+library(janitor)
+# Load data
+earthquakes_raw <- read.csv("earthquakes_raw.csv")
+View(earthquakes_raw)
+earthquakes <- earthquakes_raw %>%
+clean_names()
+View(earthquakes)
+& rename columns
+earthquakes <- earthquakes %>%
+select(-search_parameters)
+View(earthquakes)
+earthquakes <- earthquakes[-c(1, )]
+earthquakes <- earthquakes[-c(1), ]
+View(earthquakes)
+?country_replace
+View(earthquakes_raw)
+install.packages("countrycode")
+library(countrycode)
+earthquakes <- earthquakes %>%
+mutate(country_test = countryname(Location.Name))
+earthquakes <- earthquakes %>%
+mutate(country_test = countryname(location_name))
+View(earthquakes)
+sum(is.na(earthquakes$country_test))
+307/2204
+state_dict()
+state_dict
+state_dict <- "https://bit.ly/2ToSrFv"
+state_dict <- read.csv(state_dict)
+View(state_dict)
+country_na <- earthquakes %>%
+filter(is.na(country_test))
+View(country_na)
+unique_countries <- unique(earthquakes$country_test)
+install.packages("readr")
+install.packages("selectr")
+library(tidyverse)
+library(rvest)
+library(readr)
+library(selectr)
+embassy_list <- read_html("https://www.usembassy.gov/")
+embassy_list
+install.packages("RSelenium")
+library(RSelenium)
+body_nodes <- embassy_list %>%
+html_node(“body”) %>%
+html_children()
+body_nodes <- embassy_list %>%
+html_node(body) %>%
+html_children()
+str(embassy_list)
+embassy_list <- read_html("https://www.usembassy.gov/")
+str(embassy_list)
+embassy_test <- read_html("https://travel.state.gov/content/travel/en/us-visas/visa-information-resources/list-of-posts.html")
+test <- read_html(embassy_test, xpath="//a" )
+test
+test <- html_node(embassy_test, xpath="//a" )
+head(test)
+list <- html_table(test)
+list
+embassy_list <- read_html("https://www.usembassy.gov/")
+html_text(embassy_list)
+?html_text
+html_text2(embassy_list)
+html_text(embassy_list, trim=TRUE)
+html_children(embassy_list)
+html_node(embassy_list)
+html_node(embassy_list, css="\\a")
+html_node(embassy_list, css="\nA")
+afghanistan <- read_html("https://www.usembassy.gov/afghanistan/")
+afghanistan
+install.packages("remotes")
+remotes::install_github("omegahat/RTidyHTML")
+install.packages("remotes")
+remotes::install_github("omegahat/RTidyHTML")
